@@ -29,7 +29,7 @@ function card(t) {
     <div class="card-body">
       <h3>${esc(t.title)}</h3>
       <p class="meta">${t.type} · ${esc(t.year)}</p>
-      ${a ? `<p class="meta audience">Audience ${a.score} · ${votesText(a.votes)}</p>` : ""}
+      ${a ? `<p class="meta audience">Audience ${a.score.toFixed(1)} · ${votesText(a.votes)}</p>` : ""}
     </div>
   </a>`;
 }
@@ -37,7 +37,7 @@ function card(t) {
 // Cards for live TMDB data link out to TMDB, since we have no review page for them.
 function liveCard(t) {
   return `<a class="card" href="${esc(t.url)}" target="_blank" rel="noopener">
-    <div class="card-img"><img src="${esc(t.poster)}" alt="" loading="lazy">${t.score == null ? "" : `<span class="badge badge-muted">TMDB ${t.score}</span>`}</div>
+    <div class="card-img"><img src="${esc(t.poster)}" alt="" loading="lazy">${t.score == null ? "" : `<span class="badge badge-muted">TMDB ${t.score.toFixed(1)}</span>`}</div>
     <div class="card-body">
       <h3>${esc(t.title)}</h3>
       <p class="meta">${t.type}${t.year ? " · " + esc(t.year) : ""}</p>
@@ -167,7 +167,7 @@ function initReview() {
             <div class="score">${t.score == null
               ? `<span class="score-num">—</span><span>Full review<br>coming soon</span>`
               : `<span class="score-num">${t.score}<small>/10</small></span><span>CineSedation<br>score</span>`}</div>
-            ${audience ? `<div class="score"><span class="score-num score-audience">${audience.score}<small>/10</small></span><span>Audience score<br>${audience.votes.toLocaleString()} ratings on TMDB</span></div>` : ""}
+            ${audience ? `<div class="score"><span class="score-num score-audience">${audience.score.toFixed(1)}<small>/10</small></span><span>Audience score<br>${audience.votes.toLocaleString()} ratings on TMDB</span></div>` : ""}
           </div>
         </div>
       </div>
