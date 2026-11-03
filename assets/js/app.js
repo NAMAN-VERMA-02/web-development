@@ -50,6 +50,15 @@ function initHome() {
   $("#stat-titles").textContent = TITLES.length;
   $("#stat-tens").textContent = picks.length;
 
+  if (typeof TRENDING !== "undefined" && TRENDING.length) {
+    $("#trending-grid").innerHTML = TRENDING.map((t) => `<a class="card" href="${esc(t.url)}" target="_blank" rel="noopener">
+      <div class="card-img"><img src="${esc(t.poster)}" alt="" loading="lazy">${t.score == null ? "" : `<span class="badge badge-muted">TMDB ${t.score}</span>`}</div>
+      <div class="card-body"><h3>${esc(t.title)}</h3><p class="meta">${t.type}${t.year ? " · " + esc(t.year) : ""}</p></div>
+    </a>`).join("");
+    $("#trending-updated").textContent = "Updated " + new Date(TRENDING_UPDATED).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+    $("#trending").hidden = false;
+  }
+
   function render() {
     let list = filterTitles(TITLES, input.value, type);
     if (sortSel.value === "title") list = [...list].sort((a, b) => a.title.localeCompare(b.title));

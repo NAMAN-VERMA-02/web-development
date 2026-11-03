@@ -30,6 +30,16 @@ assets/
 
 Add one object to the `TITLES` array in `assets/js/data.js` and drop its image in `assets/img/`. The home grid, search, filters and review page all pick it up automatically.
 
+## Weekly trending update
+
+A GitHub Action ([`.github/workflows/update-trending.yml`](.github/workflows/update-trending.yml)) runs every Monday at 06:00 UTC. It runs [`scripts/update-trending.mjs`](scripts/update-trending.mjs), which pulls this week's trending titles from [TMDB](https://www.themoviedb.org/), rewrites `assets/js/trending.js`, commits the change and redeploys the site. The "Trending this week" section on the home page stays hidden until the first run.
+
+**Setup (once):** get a free API key at themoviedb.org → Settings → API, then add it as a repository secret named `TMDB_API_KEY` (Settings → Secrets and variables → Actions). Either the short API key or the long read access token works.
+
+**Run it now:** Actions tab → *Update trending* → *Run workflow*.
+
+This product uses the TMDB API but is not endorsed or certified by TMDB.
+
 ## Run locally
 
 Open `index.html` in a browser, or serve the folder:
