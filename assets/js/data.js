@@ -1,8 +1,10 @@
 // All titles and reviews. Add a new review by adding one object here.
 // score: critic score out of 10, or null when the full review is not written yet.
+// tmdb: TMDB path, used by the weekly update to fetch the audience score and rating count.
 const TITLES = [
   {
     id: "breaking-bad",
+    tmdb: "tv/1396",
     title: "Breaking Bad",
     type: "Series",
     year: "2008–2013",
@@ -20,6 +22,7 @@ const TITLES = [
   },
   {
     id: "stranger-things",
+    tmdb: "tv/66732",
     title: "Stranger Things",
     type: "Series",
     year: "2016–",
@@ -37,6 +40,7 @@ const TITLES = [
   },
   {
     id: "attack-on-titan",
+    tmdb: "tv/1429",
     title: "Attack on Titan",
     type: "Anime",
     year: "2013–2023",
@@ -55,6 +59,7 @@ const TITLES = [
   },
   {
     id: "the-queens-gambit",
+    tmdb: "tv/87739",
     title: "The Queen's Gambit",
     type: "Series",
     year: "2020",
@@ -72,6 +77,7 @@ const TITLES = [
   },
   {
     id: "the-witcher",
+    tmdb: "tv/71912",
     title: "The Witcher",
     type: "Series",
     year: "2019–",
@@ -89,6 +95,7 @@ const TITLES = [
   },
   {
     id: "money-heist",
+    tmdb: "tv/71446",
     title: "Money Heist",
     type: "Series",
     year: "2017–2021",
@@ -107,6 +114,7 @@ const TITLES = [
   },
   {
     id: "naruto",
+    tmdb: "tv/46260",
     title: "Naruto",
     type: "Anime",
     year: "2002–2007",
@@ -125,6 +133,7 @@ const TITLES = [
   },
   {
     id: "lupin",
+    tmdb: "tv/96677",
     title: "Lupin",
     type: "Series",
     year: "2021–",
@@ -143,6 +152,7 @@ const TITLES = [
   },
   {
     id: "inception",
+    tmdb: "movie/27205",
     title: "Inception",
     type: "Movie",
     year: "2010",
@@ -157,6 +167,7 @@ const TITLES = [
   },
   {
     id: "dark",
+    tmdb: "tv/70523",
     title: "Dark",
     type: "Series",
     year: "2017–2020",

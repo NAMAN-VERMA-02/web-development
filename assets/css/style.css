@@ -156,3 +156,30 @@ label { font-size: .85rem; color: var(--muted); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 #search { background: var(--surface); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font: inherit; font-size: .9rem; width: 150px; }
 .tmdb-note { margin-top: 14px; }
+
+/* Live rows: one horizontal line of posters that scrolls inside itself */
+.row { display: grid; grid-auto-flow: column; grid-auto-columns: 170px; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+.row .card { scroll-snap-align: start; }
+.audience { font-size: .8rem; }
+.eyebrow-netflix { color: #e50914; }
+.eyebrow-prime { color: #1fa7e0; }
+
+/* Pick of the week */
+.feature { position: relative; isolation: isolate; overflow: hidden; display: grid; grid-template-columns: 220px 1fr; gap: 36px; align-items: center; padding: 36px; border-radius: 20px; border: 1px solid var(--line); background: var(--surface); }
+.feature-bg { position: absolute; inset: 0; background: center/cover; opacity: .28; z-index: -2; }
+.feature::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--surface) 15%, rgba(22, 21, 28, .55)); z-index: -1; }
+.feature-poster { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: var(--radius); box-shadow: 0 16px 40px rgba(0, 0, 0, .55); }
+.feature h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); margin: 6px 0 4px; }
+.feature-verdict { color: #d8d4de; font-size: 1.08rem; max-width: 60ch; margin: 14px 0 22px; }
+.feature-actions { display: flex; align-items: center; gap: 22px; }
+
+/* Score pair on review page */
+.scores { display: flex; flex-wrap: wrap; gap: 32px; }
+.score span:last-child { line-height: 1.35; font-size: .9rem; }
+.score-audience { color: var(--text); }
+
+@media (max-width: 720px) {
+  .row { grid-auto-columns: 42%; }
+  .feature { grid-template-columns: 1fr; padding: 22px; gap: 20px; }
+  .feature-poster { width: 140px; }
+}

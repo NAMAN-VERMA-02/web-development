@@ -51,6 +51,8 @@
       </div>
     </section>
 
+    <section class="container block" id="week-pick" aria-labelledby="week-pick-title"></section>
+
     <section class="container block">
       <div class="section-head">
         <div><p class="eyebrow">Editor's picks</p><h2>Perfect 10s</h2></div>
@@ -58,13 +60,29 @@
       <div class="grid" id="picks"></div>
     </section>
 
-    <section class="container block" id="trending" hidden>
+    <section class="container block live-row" id="trending" hidden>
       <div class="section-head">
         <div><p class="eyebrow">Trending this week</p><h2>What everyone is watching</h2></div>
-        <p class="muted small" id="trending-updated"></p>
+        <p class="muted small live-updated"></p>
       </div>
-      <div class="grid" id="trending-grid"></div>
-      <p class="muted small tmdb-note">Trending data from <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB</a>. This site uses the TMDB API but is not endorsed or certified by TMDB.</p>
+      <div class="row"></div>
+    </section>
+
+    <section class="container block live-row" id="netflix" hidden>
+      <div class="section-head">
+        <div><p class="eyebrow eyebrow-netflix">Netflix India</p><h2>Popular on Netflix right now</h2></div>
+        <p class="muted small live-updated"></p>
+      </div>
+      <div class="row"></div>
+    </section>
+
+    <section class="container block live-row" id="prime" hidden>
+      <div class="section-head">
+        <div><p class="eyebrow eyebrow-prime">Prime Video India</p><h2>Popular on Prime Video right now</h2></div>
+        <p class="muted small live-updated"></p>
+      </div>
+      <div class="row"></div>
+      <p class="muted small tmdb-note">Live data and rating counts from <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB</a>, updated every Monday. This site uses the TMDB API but is not endorsed or certified by TMDB.</p>
     </section>
 
     <section class="container block" id="browse">

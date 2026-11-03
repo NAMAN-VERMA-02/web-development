@@ -30,9 +30,17 @@ assets/
 
 Add one object to the `TITLES` array in `assets/js/data.js` and drop its image in `assets/img/`. The home grid, search, filters and review page all pick it up automatically.
 
-## Weekly trending update
+## Weekly live data
 
-A GitHub Action ([`.github/workflows/update-trending.yml`](.github/workflows/update-trending.yml)) runs every Monday at 06:00 UTC. It runs [`scripts/update-trending.mjs`](scripts/update-trending.mjs), which pulls this week's trending titles from [TMDB](https://www.themoviedb.org/), rewrites `assets/js/trending.js`, commits the change and redeploys the site. The "Trending this week" section on the home page stays hidden until the first run.
+A GitHub Action ([`.github/workflows/update-trending.yml`](.github/workflows/update-trending.yml)) runs every Monday at 06:00 UTC. It runs [`scripts/update-trending.mjs`](scripts/update-trending.mjs), which pulls from [TMDB](https://www.themoviedb.org/):
+
+- **Trending this week** across all of TMDB
+- **Popular on Netflix** and **Popular on Prime Video** in India
+- The **audience score and number of ratings** for every title we have reviewed (each title's `tmdb` field in `data.js`)
+
+It rewrites `assets/js/trending.js`, commits the change and redeploys the site. Each section stays hidden until it has data.
+
+The **CineSedation pick of the week** needs no data: the home page rotates through our 9+ reviews by week number, so every visitor sees the same pick all week.
 
 **Setup (once):** get a free API key at themoviedb.org → Settings → API, then add it as a repository secret named `TMDB_API_KEY` (Settings → Secrets and variables → Actions). Either the short API key or the long read access token works.
 

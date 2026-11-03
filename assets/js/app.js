@@ -18,14 +18,62 @@ function scoreBadge(score) {
     : `<span class="badge" aria-label="Critic score ${score} out of 10">★ ${score}</span>`;
 }
 
+const compact = new Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 });
+const audienceOf = (id) => (typeof AUDIENCE !== "undefined" && AUDIENCE[id]) || null;
+const votesText = (n) => `${compact.format(n)} ${n === 1 ? "rating" : "ratings"}`;
+
 function card(t) {
+  const a = audienceOf(t.id);
   return `<a class="card" href="review.html?id=${t.id}">
     <div class="card-img"><img src="${t.poster}" alt="" loading="lazy">${scoreBadge(t.score)}</div>
     <div class="card-body">
       <h3>${esc(t.title)}</h3>
       <p class="meta">${t.type} · ${esc(t.year)}</p>
+      ${a ? `<p class="meta audience">Audience ${a.score} · ${votesText(a.votes)}</p>` : ""}
     </div>
   </a>`;
+}
+
+// Cards for live TMDB data link out to TMDB, since we have no review page for them.
+function liveCard(t) {
+  return `<a class="card" href="${esc(t.url)}" target="_blank" rel="noopener">
+    <div class="card-img"><img src="${esc(t.poster)}" alt="" loading="lazy">${t.score == null ? "" : `<span class="badge badge-muted">TMDB ${t.score}</span>`}</div>
+    <div class="card-body">
+      <h3>${esc(t.title)}</h3>
+      <p class="meta">${t.type}${t.year ? " · " + esc(t.year) : ""}</p>
+      ${t.votes ? `<p class="meta audience">${votesText(t.votes)}</p>` : ""}
+    </div>
+  </a>`;
+}
+
+// Same pick for every visitor all week: rotate through our 9+ reviews by ISO week number.
+function weekPick(date = new Date()) {
+  const pool = TITLES.filter((t) => t.score >= 9);
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  const week = Math.ceil(((d - Date.UTC(d.getUTCFullYear(), 0, 1)) / 864e5 + 1) / 7);
+  return pool[(d.getUTCFullYear() * 53 + week) % pool.length];
+}
+
+function renderWeekPick() {
+  const t = weekPick();
+  const monday = new Date();
+  monday.setDate(monday.getDate() - ((monday.getDay() + 6) % 7));
+  $("#week-pick").innerHTML = `
+    <div class="feature">
+      <div class="feature-bg" style="background-image:url('${t.backdrop || t.poster}')"></div>
+      <img class="feature-poster" src="${t.poster}" alt="${esc(t.title)} poster">
+      <div class="feature-body">
+        <p class="eyebrow">CineSedation pick · week of ${monday.toLocaleDateString(undefined, { day: "numeric", month: "short" })}</p>
+        <h2 id="week-pick-title">${esc(t.title)}</h2>
+        <p class="meta">${t.type} · ${esc(t.year)} · ${t.genres.join(", ")}</p>
+        <p class="feature-verdict">${esc(t.verdict)}</p>
+        <div class="feature-actions">
+          <span class="score-num">${t.score}<small>/10</small></span>
+          <a class="btn" href="review.html?id=${t.id}">Read the review</a>
+        </div>
+      </div>
+    </div>`;
 }
 
 /* ---------- Home ---------- */
@@ -50,13 +98,19 @@ function initHome() {
   $("#stat-titles").textContent = TITLES.length;
   $("#stat-tens").textContent = picks.length;
 
-  if (typeof TRENDING !== "undefined" && TRENDING.length) {
-    $("#trending-grid").innerHTML = TRENDING.map((t) => `<a class="card" href="${esc(t.url)}" target="_blank" rel="noopener">
-      <div class="card-img"><img src="${esc(t.poster)}" alt="" loading="lazy">${t.score == null ? "" : `<span class="badge badge-muted">TMDB ${t.score}</span>`}</div>
-      <div class="card-body"><h3>${esc(t.title)}</h3><p class="meta">${t.type}${t.year ? " · " + esc(t.year) : ""}</p></div>
-    </a>`).join("");
-    $("#trending-updated").textContent = "Updated " + new Date(TRENDING_UPDATED).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
-    $("#trending").hidden = false;
+  renderWeekPick();
+  // trending.js may predate a list (or not exist yet), so each row only shows when its data is there.
+  const live = {
+    trending: typeof TRENDING !== "undefined" && TRENDING,
+    netflix: typeof NETFLIX !== "undefined" && NETFLIX,
+    prime: typeof PRIME !== "undefined" && PRIME
+  };
+  for (const [id, items] of Object.entries(live)) {
+    if (!items?.length) continue;
+    const section = $("#" + id);
+    $(".row", section).innerHTML = items.map(liveCard).join("");
+    $(".live-updated", section).textContent = "Updated " + new Date(TRENDING_UPDATED).toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric" });
+    section.hidden = false;
   }
 
   function render() {
@@ -95,6 +149,7 @@ function initReview() {
   const watch = t.watch.length
     ? t.watch.map(([name, url]) => `<a class="btn btn-ghost" href="${url}" target="_blank" rel="noopener">${name} ↗</a>`).join("")
     : `<p class="muted">Availability varies by region.</p>`;
+  const audience = audienceOf(t.id);
   const related = TITLES.filter((x) => x.id !== t.id && x.genres.some((g) => t.genres.includes(g))).slice(0, 4);
 
   main.innerHTML = `
@@ -108,9 +163,12 @@ function initReview() {
           <p class="tagline">${esc(t.tagline)}</p>
           <p class="meta">Created by ${esc(t.creator)}</p>
           <ul class="tags">${t.genres.map((g) => `<li><a href="index.html?q=${encodeURIComponent(g)}">${g}</a></li>`).join("")}</ul>
-          <div class="score">${t.score == null
-            ? `<span class="score-num">—</span><span>Full review coming soon</span>`
-            : `<span class="score-num">${t.score}<small>/10</small></span><span>CineSedation score</span>`}</div>
+          <div class="scores">
+            <div class="score">${t.score == null
+              ? `<span class="score-num">—</span><span>Full review<br>coming soon</span>`
+              : `<span class="score-num">${t.score}<small>/10</small></span><span>CineSedation<br>score</span>`}</div>
+            ${audience ? `<div class="score"><span class="score-num score-audience">${audience.score}<small>/10</small></span><span>Audience score<br>${audience.votes.toLocaleString()} ratings on TMDB</span></div>` : ""}
+          </div>
         </div>
       </div>
     </header>
