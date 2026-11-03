@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineSedation · Movie, Series & Anime Reviews</title>
+  <meta name="description" content="Quick, honest reviews of movies, TV series and anime. Find your next watch on CineSedation.">
+  <meta property="og:title" content="CineSedation · Movie, Series & Anime Reviews">
+  <meta property="og:description" content="Quick, honest reviews of movies, TV series and anime. Find your next watch on CineSedation.">
+  <meta property="og:image" content="assets/img/hero-bg.jpg">
+  <meta name="theme-color" content="#0c0b10">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">Cine<span>Sedation</span></a>
+      <ul class="nav" id="nav">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="index.html?type=Movie">Movies</a></li>
+        <li><a href="index.html?type=Series">Series</a></li>
+        <li><a href="index.html?type=Anime">Anime</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <form class="nav-search" action="index.html" role="search">
+        <input type="search" name="q" placeholder="Search reviews…" aria-label="Search reviews">
+      </form>
+      <button id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Your movie review hub</p>
+        <h1>Reviews that <em>soothe</em> your cinematic cravings.</h1>
+        <p>Quick, honest takes on the movies, series and anime worth your time, with the plot, the performances and a straight score out of 10.</p>
+        <form id="hero-search" role="search">
+          <input type="search" placeholder="Search a title, genre or creator…" aria-label="Search reviews" oninput="document.getElementById('search').value=this.value">
+          <button class="btn" type="submit">Search</button>
+        </form>
+        <div class="stats">
+          <div><strong id="stat-titles">10</strong>titles reviewed</div>
+          <div><strong>3</strong>formats</div>
+          <div><strong id="stat-tens">4</strong>perfect 10s</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container block">
+      <div class="section-head">
+        <div><p class="eyebrow">Editor's picks</p><h2>Perfect 10s</h2></div>
+      </div>
+      <div class="grid" id="picks"></div>
+    </section>
+
+    <section class="container block" id="browse">
+      <div class="section-head">
+        <div><p class="eyebrow">Browse</p><h2>All reviews</h2></div>
+        <div class="filters">
+          <button class="chip" data-type="All">All</button>
+          <button class="chip" data-type="Movie">Movies</button>
+          <button class="chip" data-type="Series">Series</button>
+          <button class="chip" data-type="Anime">Anime</button>
+          <label class="sr-only" for="sort">Sort by</label>
+          <select id="sort"><option value="score">Top rated</option><option value="title">A–Z</option></select>
+          <input type="search" id="search" placeholder="Filter…" aria-label="Filter reviews">
+          <span id="count" aria-live="polite"></span>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year">2026</span> CineSedation · Quick reviews for every kind of viewer.</p>
+      <nav><a href="index.html">Home</a><a href="about.html">About</a><a href="https://github.com/NAMAN-VERMA-02/web-development">GitHub</a></nav>
+    </div>
+  </footer>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
