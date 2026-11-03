@@ -112,40 +112,31 @@ const TRENDING = [
 ];
 const NETFLIX = [
   {
-    "title": "Law & Order: Special Victims Unit",
+    "title": "The Early Spring",
     "type": "Series",
-    "year": "1999",
-    "score": 8,
-    "votes": 4403,
-    "poster": "https://image.tmdb.org/t/p/w342/pHNhUwSXuDQ9jPZOCb8SgJaQZsc.jpg",
-    "url": "https://www.themoviedb.org/tv/2734"
+    "year": "2026",
+    "score": 8.2,
+    "votes": 33,
+    "poster": "https://image.tmdb.org/t/p/w342/lGFngmJWMO4HTPcI0sUGKBAFqMe.jpg",
+    "url": "https://www.themoviedb.org/tv/299952"
   },
   {
-    "title": "WWE NXT",
+    "title": "Dead-End Job",
     "type": "Series",
-    "year": "2010",
-    "score": 6.6,
-    "votes": 134,
-    "poster": "https://image.tmdb.org/t/p/w342/9nLBX5Bf7PW4FAaWJLXpFFdeTlV.jpg",
-    "url": "https://www.themoviedb.org/tv/31991"
+    "year": "2026",
+    "score": 7.4,
+    "votes": 31,
+    "poster": "https://image.tmdb.org/t/p/w342/vrDDqk9PAkIs0PQAbW5G0yhPVS3.jpg",
+    "url": "https://www.themoviedb.org/tv/289517"
   },
   {
-    "title": "Raw",
+    "title": "Lupin",
     "type": "Series",
-    "year": "1993",
-    "score": 6.8,
-    "votes": 382,
-    "poster": "https://image.tmdb.org/t/p/w342/fstEe6RsyNyPUnMwNcL20iNl0nE.jpg",
-    "url": "https://www.themoviedb.org/tv/4656"
-  },
-  {
-    "title": "The Rookie",
-    "type": "Series",
-    "year": "2018",
-    "score": 8.5,
-    "votes": 3599,
-    "poster": "https://image.tmdb.org/t/p/w342/70kTz0OmjjZe7zHvIDrq2iKW7PJ.jpg",
-    "url": "https://www.themoviedb.org/tv/79744"
+    "year": "2021",
+    "score": 7.7,
+    "votes": 2771,
+    "poster": "https://image.tmdb.org/t/p/w342/h6Z2oogE4mJk2uffdtIlLhb0EHx.jpg",
+    "url": "https://www.themoviedb.org/tv/96677"
   },
   {
     "title": "Bleach",
@@ -166,70 +157,70 @@ const NETFLIX = [
     "url": "https://www.themoviedb.org/movie/1571955"
   },
   {
-    "title": "Good Mythical Morning",
-    "type": "Series",
-    "year": "2012",
-    "score": 7,
-    "votes": 98,
-    "poster": "https://image.tmdb.org/t/p/w342/jMpBQr2aNOFAI6wsC47zsOG6qOh.jpg",
-    "url": "https://www.themoviedb.org/tv/65701"
-  },
-  {
-    "title": "Lupin",
-    "type": "Series",
-    "year": "2021",
-    "score": 7.7,
-    "votes": 2771,
-    "poster": "https://image.tmdb.org/t/p/w342/h6Z2oogE4mJk2uffdtIlLhb0EHx.jpg",
-    "url": "https://www.themoviedb.org/tv/96677"
-  },
-  {
-    "title": "Chicago P.D.",
-    "type": "Series",
-    "year": "2014",
-    "score": 8.4,
-    "votes": 2650,
-    "poster": "https://image.tmdb.org/t/p/w342/w7R4ooo2IbOfBKOoMDwaiMGsNQf.jpg",
-    "url": "https://www.themoviedb.org/tv/58841"
-  },
-  {
-    "title": "Dead-End Job",
+    "title": "Where the Mask Ends",
     "type": "Series",
     "year": "2026",
-    "score": 7.4,
-    "votes": 31,
-    "poster": "https://image.tmdb.org/t/p/w342/vrDDqk9PAkIs0PQAbW5G0yhPVS3.jpg",
-    "url": "https://www.themoviedb.org/tv/289517"
-  },
-  {
-    "title": "Miraculous: Tales of Ladybug & Cat Noir",
-    "type": "Series",
-    "year": "2015",
     "score": 8.1,
-    "votes": 4700,
-    "poster": "https://image.tmdb.org/t/p/w342/acrtAy8gmxcsEvrDP09MpMSCeDZ.jpg",
-    "url": "https://www.themoviedb.org/tv/65334"
+    "votes": 7,
+    "poster": "https://image.tmdb.org/t/p/w342/cE9Og0lCCRCP2RArarzJXmu6xEB.jpg",
+    "url": "https://www.themoviedb.org/tv/300146"
   },
   {
-    "title": "Detective Conan",
+    "title": "The Birthday​ Gift​",
+    "type": "Movie",
+    "year": "2026",
+    "score": 7.3,
+    "votes": 11,
+    "poster": "https://image.tmdb.org/t/p/w342/jqGFILLsEDwsLteNDQextojsYFV.jpg",
+    "url": "https://www.themoviedb.org/movie/1789549"
+  },
+  {
+    "title": "Cyberpunk: Edgerunners",
     "type": "Anime",
-    "year": "1996",
-    "score": 8,
-    "votes": 800,
-    "poster": "https://image.tmdb.org/t/p/w342/iHfA63x7rFaWbP2C832uCe2r0zy.jpg",
-    "url": "https://www.themoviedb.org/tv/30983"
+    "year": "2022",
+    "score": 8.5,
+    "votes": 2127,
+    "poster": "https://image.tmdb.org/t/p/w342/v3JuB15WybKmxDeT1hWdK3j6eSJ.jpg",
+    "url": "https://www.themoviedb.org/tv/105248"
+  },
+  {
+    "title": "Dragon Ball Super: Beerus",
+    "type": "Anime",
+    "year": "2026",
+    "score": 9.6,
+    "votes": 382,
+    "poster": "https://image.tmdb.org/t/p/w342/AojgldgsOlzZV8ahyOzaiAjJWvV.jpg",
+    "url": "https://www.themoviedb.org/tv/312359"
+  },
+  {
+    "title": "You, Me, Us",
+    "type": "Movie",
+    "year": "2026",
+    "score": 6,
+    "votes": 31,
+    "poster": "https://image.tmdb.org/t/p/w342/4Gw8ukw5aAUP1uzNtYZ0CNTUy5A.jpg",
+    "url": "https://www.themoviedb.org/movie/1541477"
+  },
+  {
+    "title": "A Couple of Lies",
+    "type": "Series",
+    "year": "2026",
+    "score": 4.3,
+    "votes": 6,
+    "poster": "https://image.tmdb.org/t/p/w342/1k8bldCgOvWk9IDaMqokUE78qaX.jpg",
+    "url": "https://www.themoviedb.org/tv/336240"
+  },
+  {
+    "title": "JoJo's Bizarre Adventure",
+    "type": "Anime",
+    "year": "2012",
+    "score": 8.6,
+    "votes": 1698,
+    "poster": "https://image.tmdb.org/t/p/w342/ogAWwbh3frWtiTyyXrZaVFtqCgp.jpg",
+    "url": "https://www.themoviedb.org/tv/45790"
   }
 ];
 const PRIME = [
-  {
-    "title": "Law & Order: Special Victims Unit",
-    "type": "Series",
-    "year": "1999",
-    "score": 8,
-    "votes": 4403,
-    "poster": "https://image.tmdb.org/t/p/w342/pHNhUwSXuDQ9jPZOCb8SgJaQZsc.jpg",
-    "url": "https://www.themoviedb.org/tv/2734"
-  },
   {
     "title": "Apocalypse Z: New World",
     "type": "Movie",
@@ -240,6 +231,24 @@ const PRIME = [
     "url": "https://www.themoviedb.org/movie/1507696"
   },
   {
+    "title": "Dexter: Resurrection",
+    "type": "Series",
+    "year": "2025",
+    "score": 8.5,
+    "votes": 725,
+    "poster": "https://image.tmdb.org/t/p/w342/o2Oyi3boT100bY5kCP4MBiTeetO.jpg",
+    "url": "https://www.themoviedb.org/tv/259909"
+  },
+  {
+    "title": "Ali G: Who Iz I?",
+    "type": "Movie",
+    "year": "2026",
+    "score": 5.8,
+    "votes": 126,
+    "poster": "https://image.tmdb.org/t/p/w342/uTyVxPeWX8Ai30IQoyDDQONNcq.jpg",
+    "url": "https://www.themoviedb.org/movie/1727734"
+  },
+  {
     "title": "Drive - The Pretenders",
     "type": "Movie",
     "year": "2026",
@@ -247,6 +256,51 @@ const PRIME = [
     "votes": 97,
     "poster": "https://image.tmdb.org/t/p/w342/s9syckECnUYhKePQ1A0DC0mFVZ9.jpg",
     "url": "https://www.themoviedb.org/movie/1596275"
+  },
+  {
+    "title": "Carrie",
+    "type": "Series",
+    "year": "2026",
+    "score": 8.3,
+    "votes": 546,
+    "poster": "https://image.tmdb.org/t/p/w342/6mUMquPQBFJGqTACS3Azkwwrx8d.jpg",
+    "url": "https://www.themoviedb.org/tv/288673"
+  },
+  {
+    "title": "The Terminal List",
+    "type": "Series",
+    "year": "2022",
+    "score": 8,
+    "votes": 1320,
+    "poster": "https://image.tmdb.org/t/p/w342/xyFAzP7RKK8cARCSalIZ9A9T0jV.jpg",
+    "url": "https://www.themoviedb.org/tv/120911"
+  },
+  {
+    "title": "Love in Disguise",
+    "type": "Series",
+    "year": "2026",
+    "score": 9.1,
+    "votes": 45,
+    "poster": "https://image.tmdb.org/t/p/w342/kSAXIAovLC4z7Wp2Hy8oqLmpkox.jpg",
+    "url": "https://www.themoviedb.org/tv/303745"
+  },
+  {
+    "title": "The Lord of the Rings: The Rings of Power",
+    "type": "Series",
+    "year": "2022",
+    "score": 7.2,
+    "votes": 3999,
+    "poster": "https://image.tmdb.org/t/p/w342/bMXWXKM9ydUmMTNvDnYo9QtCBRt.jpg",
+    "url": "https://www.themoviedb.org/tv/84773"
+  },
+  {
+    "title": "Law & Order: Special Victims Unit",
+    "type": "Series",
+    "year": "1999",
+    "score": 8,
+    "votes": 4403,
+    "poster": "https://image.tmdb.org/t/p/w342/pHNhUwSXuDQ9jPZOCb8SgJaQZsc.jpg",
+    "url": "https://www.themoviedb.org/tv/2734"
   },
   {
     "title": "NCIS",
@@ -274,60 +328,6 @@ const PRIME = [
     "votes": 3570,
     "poster": "https://image.tmdb.org/t/p/w342/f1VCQIG2iCyOookdgOzwtUpwWC0.jpg",
     "url": "https://www.themoviedb.org/tv/108978"
-  },
-  {
-    "title": "The Terminal List",
-    "type": "Series",
-    "year": "2022",
-    "score": 8,
-    "votes": 1320,
-    "poster": "https://image.tmdb.org/t/p/w342/xyFAzP7RKK8cARCSalIZ9A9T0jV.jpg",
-    "url": "https://www.themoviedb.org/tv/120911"
-  },
-  {
-    "title": "Pinocchio: Unstrung",
-    "type": "Movie",
-    "year": "2026",
-    "score": 6.4,
-    "votes": 156,
-    "poster": "https://image.tmdb.org/t/p/w342/hJNdizFlxOW89edX3Rzr6OliSFI.jpg",
-    "url": "https://www.themoviedb.org/movie/1232569"
-  },
-  {
-    "title": "Chicago Fire",
-    "type": "Series",
-    "year": "2012",
-    "score": 8.4,
-    "votes": 2461,
-    "poster": "https://image.tmdb.org/t/p/w342/mqwUwexSSiBGC9qGgu38tKczFn.jpg",
-    "url": "https://www.themoviedb.org/tv/44006"
-  },
-  {
-    "title": "Chicago P.D.",
-    "type": "Series",
-    "year": "2014",
-    "score": 8.4,
-    "votes": 2650,
-    "poster": "https://image.tmdb.org/t/p/w342/w7R4ooo2IbOfBKOoMDwaiMGsNQf.jpg",
-    "url": "https://www.themoviedb.org/tv/58841"
-  },
-  {
-    "title": "Dexter: Resurrection",
-    "type": "Series",
-    "year": "2025",
-    "score": 8.5,
-    "votes": 725,
-    "poster": "https://image.tmdb.org/t/p/w342/o2Oyi3boT100bY5kCP4MBiTeetO.jpg",
-    "url": "https://www.themoviedb.org/tv/259909"
-  },
-  {
-    "title": "FBI",
-    "type": "Series",
-    "year": "2018",
-    "score": 7.9,
-    "votes": 962,
-    "poster": "https://image.tmdb.org/t/p/w342/br3xWBUu7W0dXsMev0XXVvoMxuE.jpg",
-    "url": "https://www.themoviedb.org/tv/80748"
   }
 ];
 const AUDIENCE = {
