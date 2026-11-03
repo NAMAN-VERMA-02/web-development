@@ -51,9 +51,14 @@ async function main() {
   const tmdb = client(key);
 
   const out = { TRENDING: (await tmdb("trending/all/week")).results.map(toItem).filter(Boolean).slice(0, LIMIT) };
+  // Without date limits, all-time catalogue hits (The Office, Seinfeld) top every service.
+  const daysAgo = (n) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
   for (const [name, provider] of Object.entries(PROVIDERS)) {
     const params = { watch_region: REGION, with_watch_providers: provider, sort_by: "popularity.desc" };
-    const [movies, tv] = await Promise.all([tmdb("discover/movie", params), tmdb("discover/tv", params)]);
+    const [movies, tv] = await Promise.all([
+      tmdb("discover/movie", { ...params, "primary_release_date.gte": daysAgo(365) }),
+      tmdb("discover/tv", { ...params, "air_date.gte": daysAgo(60) }) // a new episode in the last 60 days
+    ]);
     out[name] = mergeByPopularity(movies.results, tv.results);
   }
   // Never overwrite good lists with empty ones if TMDB returns something odd.
