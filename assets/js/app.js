@@ -64,8 +64,8 @@ function renderWeekPick() {
       <div class="feature-bg" style="background-image:url('${t.backdrop || t.poster}')"></div>
       <img class="feature-poster" src="${t.poster}" alt="${esc(t.title)} poster">
       <div class="feature-body">
-        <p class="eyebrow">CineSedation pick · week of ${monday.toLocaleDateString(undefined, { day: "numeric", month: "short" })}</p>
         <h2 id="week-pick-title">${esc(t.title)}</h2>
+        <p class="feature-label">CineSedation pick of the week, from ${monday.toLocaleDateString(undefined, { day: "numeric", month: "short" })}</p>
         <p class="meta">${t.type} · ${esc(t.year)} · ${t.genres.join(", ")}</p>
         <p class="feature-verdict">${esc(t.verdict)}</p>
         <div class="feature-actions">
@@ -158,10 +158,9 @@ function initReview() {
       <div class="container review-hero-inner">
         <img class="poster" src="${t.poster}" alt="${esc(t.title)} poster">
         <div>
-          <p class="eyebrow">${t.type} · ${esc(t.year)}</p>
           <h1>${esc(t.title)}</h1>
           <p class="tagline">${esc(t.tagline)}</p>
-          <p class="meta">Created by ${esc(t.creator)}</p>
+          <p class="meta">${t.type} · ${esc(t.year)} · Created by ${esc(t.creator)}</p>
           <ul class="tags">${t.genres.map((g) => `<li><a href="index.html?q=${encodeURIComponent(g)}">${g}</a></li>`).join("")}</ul>
           <div class="scores">
             <div class="score">${t.score == null
