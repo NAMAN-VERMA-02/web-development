@@ -34,6 +34,14 @@ export function mergeByPopularity(movies, tv) {
     .map(toItem).filter(Boolean).slice(0, LIMIT);
 }
 
+// Trending titles that stream on this provider come first (in trending order), then fallback picks fill the row.
+export function pickForProvider(trending, providersByUrl, providerId, fallback) {
+  const seen = new Set();
+  return [...trending.filter((t) => providersByUrl[t.url]?.includes(providerId)), ...fallback]
+    .filter((t) => !seen.has(t.url) && seen.add(t.url))
+    .slice(0, LIMIT);
+}
+
 function client(key) {
   // TMDB gives two kinds of credentials: a short v3 API key or a long v4 read access token.
   const isToken = key.length > 40;
@@ -50,8 +58,21 @@ async function main() {
   if (!key) throw new Error("TMDB_API_KEY is not set");
   const tmdb = client(key);
 
-  const out = { TRENDING: (await tmdb("trending/all/week")).results.map(toItem).filter(Boolean).slice(0, LIMIT) };
-  // Without date limits, all-time catalogue hits (The Office, Seinfeld) top every service.
+  // Top 100 trending this week, and which streaming services carry each one in India.
+  const pages = await Promise.all([1, 2, 3, 4, 5].map((page) => tmdb("trending/all/week", { page })));
+  const trending = pages.flatMap((p) => p.results).map(toItem).filter(Boolean);
+  const providersByUrl = {};
+  for (let i = 0; i < trending.length; i += 20) {
+    await Promise.all(trending.slice(i, i + 20).map(async (t) => {
+      const path = t.url.replace("https://www.themoviedb.org/", "");
+      const res = await tmdb(`${path}/watch/providers`);
+      providersByUrl[t.url] = (res.results?.[REGION]?.flatrate || []).map((p) => p.provider_id);
+    }));
+  }
+
+  const out = { TRENDING: trending.slice(0, LIMIT) };
+  // Fallback when too few trending titles are on a service. Without date limits,
+  // all-time catalogue hits (The Office, Seinfeld) top every service.
   const daysAgo = (n) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
   for (const [name, provider] of Object.entries(PROVIDERS)) {
     const params = { watch_region: REGION, with_watch_providers: provider, sort_by: "popularity.desc" };
@@ -59,7 +80,9 @@ async function main() {
       tmdb("discover/movie", { ...params, "primary_release_date.gte": daysAgo(365) }),
       tmdb("discover/tv", { ...params, "air_date.gte": daysAgo(60) }) // a new episode in the last 60 days
     ]);
-    out[name] = mergeByPopularity(movies.results, tv.results);
+    const fromTrending = trending.filter((t) => providersByUrl[t.url]?.includes(provider)).length;
+    out[name] = pickForProvider(trending, providersByUrl, provider, mergeByPopularity(movies.results, tv.results));
+    console.log(`${name}: ${Math.min(fromTrending, LIMIT)} from this week's trending, rest from fallback`);
   }
   // Never overwrite good lists with empty ones if TMDB returns something odd.
   for (const [name, list] of Object.entries(out)) {

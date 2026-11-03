@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { toItem, mergeByPopularity } from "./update-trending.mjs";
+import { toItem, mergeByPopularity, pickForProvider } from "./update-trending.mjs";
 
 test("maps a movie", () => {
   assert.deepEqual(toItem({ media_type: "movie", id: 27205, title: "Inception", release_date: "2010-07-15", poster_path: "/a.jpg", vote_average: 8.369, vote_count: 9 }), {
@@ -27,4 +27,12 @@ test("merges discover results by popularity and tags media type", () => {
   const out = mergeByPopularity(movies, tv);
   assert.deepEqual(out.map((x) => x.title), ["M high", "T mid", "M low"]);
   assert.equal(out[1].url, "https://www.themoviedb.org/tv/3");
+});
+
+test("provider row: trending titles on that service first, then fallback, no duplicates", () => {
+  const t = (n) => ({ title: n, url: "u/" + n });
+  const trending = [t("A"), t("B"), t("C")];
+  const providers = { "u/A": [8], "u/B": [119], "u/C": [8, 119] };
+  assert.deepEqual(pickForProvider(trending, providers, 8, [t("C"), t("X")]).map((x) => x.title), ["A", "C", "X"]);
+  assert.deepEqual(pickForProvider(trending, providers, 119, []).map((x) => x.title), ["B", "C"]);
 });
